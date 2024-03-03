@@ -2,7 +2,6 @@ package Task5.CorporationSystem;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 import CustomFileWriter.CustomFileWriter;
 import FileReader.FileReader;
@@ -52,18 +51,34 @@ public class CorporationSystem {
     }
 
     public void editEmployee(String lastName, Employee updatedEmployee) {
-        // Find the employee with the given last name and update their information
-        saveEmployeesToFile();
+        for (int i = 0; i < employees.size(); i++) {
+            Employee employee = employees.get(i);
+            if (employee.getLastName().equalsIgnoreCase(lastName)) {
+                employees.set(i, updatedEmployee);
+                saveEmployeesToFile();
+                return;
+            }
+        }
+        ConsoleColorOut.RED("Employee with last name '" + lastName + "' not found.");
     }
 
     public void deleteEmployee(String lastName) {
-        // Remove the employee with the given last name from the list
-        saveEmployeesToFile();
+        for (int i = 0; i < employees.size(); i++) {
+            Employee employee = employees.get(i);
+            if (employee.getLastName().equalsIgnoreCase(lastName)) {
+                // Нашли сотрудника, удаляем его из списка
+                employees.remove(i);
+                saveEmployeesToFile(); // Сохраняем изменения в файл
+                return; // Можно выйти из метода, если сотрудник найден и удален
+            }
+        }
+        ConsoleColorOut.RED("Employee with last name '" + lastName + "' not found.");
     }
 
     public Employee findEmployeeByLastName() {
+        String LastName = UserInput.field("Last Name ");
         for (Employee employee : employees) {
-            if (employee.getLastName().equalsIgnoreCase(UserInput.field("Last Name "))) {
+            if (employee.getLastName().equalsIgnoreCase(LastName)) {
                 return employee;
             }
         }

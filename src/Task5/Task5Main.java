@@ -1,5 +1,6 @@
 package Task5;
 
+import Task5.CorporationSystem.CorporationMenu;
 import Task5.CorporationSystem.CorporationSystem;
 import Task5.CorporationSystem.EmployeeFabric.EmployeeFabric;
 import TestFiles.FilePaths;
@@ -13,11 +14,7 @@ public class Task5Main {
                 system.addEmployee(EmployeeFabric.createRandomEmployee());
             }
         }
-
-        system.saveEmployeesToFile();
-        system.displayAllEmployees();
-        system.addEmployee();
-        system.displayAllEmployees();
-        system.saveEmployeesToFile();
+        CorporationMenu Menu = new CorporationMenu(system);
+        Menu.displayMenu();
     }
 }

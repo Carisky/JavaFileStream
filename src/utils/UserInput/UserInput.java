@@ -41,4 +41,10 @@ public class UserInput {
         Scanner scanner = new Scanner(System.in);
         return scanner.nextLine();
     }
+
+    public static int getUserInt(){
+        ConsoleColorOut.PURPLE("enter number");
+        Scanner scanner = new Scanner(System.in);
+        return scanner.nextInt();
+    }
 }
